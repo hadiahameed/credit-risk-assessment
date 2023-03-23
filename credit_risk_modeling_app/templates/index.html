@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+      <title>Credit Risk Modeling</title>
+   </head>
+   <body>
+      <h1> Credit Risk Modeling </h1>
+
+      <form action='/predict' method='POST'>
+     <div style="float:left; position:relative; margin-right:40px">
+         
+         <br>
+         <fieldset>
+            <legend>person_age:</legend>
+            <input type="range" size="2" name="person_age" min="1" max="100" value="50">
+            <output for="person_age" onforminput="value = person_age.valueAsNumber;"></output>
+         </fieldset>
+         <fieldset>
+            <legend>person_income:</legend>
+            <input type="range" size="2" name="person_income" min="100" max="1000000" value="750000">
+            <output for="person_income" onforminput="value = person_income.valueAsNumber;"></output>
+         </fieldset>
+         <fieldset>
+            <legend>person_emp_length:</legend>
+            <input type="range" size="2" name="person_emp_length" min="0" max="50" value="31">
+            <output for="person_emp_length" onforminput="value = person_emp_length.valueAsNumber;"></output>
+         </fieldset>
+         <fieldset>
+            <legend>loan_amnt:</legend>
+            <input type="range" size="2" name="loan_amnt" min="100" max="100000" value="35000">
+            <output for="loan_amnt" onforminput="value = loan_amnt.valueAsNumber;"></output>
+         </fieldset>
+         <fieldset>
+            <legend>loan_int_rate:</legend>
+            <input type="range" size="2" name="loan_int_rate" min="1" max="100" value="23">
+            <output for="loan_int_rate" onforminput="value = loan_int_rate.valueAsNumber;"></output>
+         </fieldset>
+         <fieldset>
+            <legend>loan_percent_income:</legend>
+            <input type="range" size="0.99" name="loan_percent_income" min="0.00" max="1" step="0.1" value="0.55">
+            <output for="loan_percent_income" onforminput="value = loan_percent_income.valueAsNumber;"></output>
+         </fieldset>
+         <fieldset>
+            <legend>cb_person_cred_hist_length:</legend>
+            <input type="range" size="2" name="cb_person_cred_hist_length" min="1" max="50" value="30">
+            <output for="cb_person_cred_hist_length" onforminput="value = cb_person_cred_hist_length.valueAsNumber;"></output>
+         </fieldset>
+ 
+         <fieldset>
+            <legend>person_home_ownership:</legend>
+            <div>
+               <input type="radio" id="'MORTGAGE'" name="person_home_ownership" value="MORTGAGE"
+                  checked>
+               <label for="MORTGAGE">MORTGAGE</label>
+            </div>
+            <div>
+               <input type="radio" id="OWN" name="person_home_ownership" value="OWN">
+               <label for="OWN">OWN</label>
+            </div>
+            <div>
+               <input type="radio" id="RENT" name="person_home_ownership" value="RENT">
+               <label for="RENT">RENT</label>
+            </div>
+            <div>
+               <input type="radio" id="OTHER" name="person_home_ownership" value="OTHER">
+               <label for="OTHER">OTHER</label>
+            </div>
+         </fieldset>
+         <fieldset>
+            <legend>loan_intent:</legend>
+            <div>
+               <input type="radio" id="DEBTCONSOLIDATION" name="loan_intent" value="DEBTCONSOLIDATION"
+                  checked>
+               <label for="DEBTCONSOLIDATION">DEBTCONSOLIDATION</label>
+            </div>
+            <div>
+               <input type="radio" id="VENTURE" name="loan_intent" value="VENTURE">
+               <label for="VENTURE">VENTURE</label>
+            </div>
+            <div>
+               <input type="radio" id="MEDICAL" name="loan_intent" value="MEDICAL">
+               <label for="MEDICAL">MEDICAL</label>
+            </div>
+            <div>
+               <input type="radio" id="EDUCATION" name="loan_intent" value="EDUCATION">
+               <label for="EDUCATION">EDUCATION</label>
+            </div>
+            <div>
+               <input type="radio" id="PERSONAL" name="loan_intent" value="PERSONAL">
+               <label for="PERSONAL">PERSONAL</label>
+            </div>
+            <div>
+               <input type="radio" id="HOMEIMPROVEMENT" name="loan_intent" value="HOMEIMPROVEMENT">
+               <label for="HOMEIMPROVEMENT">HOMEIMPROVEMENT</label>
+            </div>
+         </fieldset>
+         <fieldset>
+            <legend>loan_grade:</legend>
+            <div>
+               <input type="radio" id="A" name="loan_grade" value="A"
+                  checked>
+               <label for="A">A</label>
+            </div>
+            <div>
+               <input type="radio" id="B" name="loan_grade" value="B">
+               <label for="B">B</label>
+            </div>
+            <div>
+               <input type="radio" id="C" name="loan_grade" value="C">
+               <label for="C">C</label>
+            </div>
+            <div>
+               <input type="radio" id="D" name="loan_grade" value="D">
+               <label for="D">D</label>
+            </div>
+            <div>
+               <input type="radio" id="E" name="loan_grade" value="E">
+               <label for="E">E</label>
+            </div>
+            <div>
+               <input type="radio" id="F" name="loan_grade" value="F">
+               <label for="F">F</label>
+            </div>
+            <div>
+               <input type="radio" id="G" name="loan_grade" value="G">
+               <label for="G">G</label>
+            </div>
+         </fieldset>
+         <fieldset>
+            <legend>cb_person_default_on_file:</legend>
+            <div>
+               <input type="radio" id="Y" name="cb_person_default_on_file" value="Y"
+                  checked>
+               <label for="Y">Y</label>
+            </div>
+            <div>
+               <input type="radio" id="N" name="cb_person_default_on_file" value="N">
+               <label for="N">N</label>
+            </div>
+         </fieldset>
+             </div>
+
+             <div style="position:relative">
+      <h2>Output Class:</h2>
+         <div class='model_prediction'>{{output}}</div>
+         <div class='input_features'>
+            <table>
+               <thead>
+                  <tr>
+                     <th>Key</th>
+                     <th>Value</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  {% for key, value in dd.items() %}
+                  <tr>
+                     <td> {{ key }} </td>
+                     <td> {{ value }} </td>
+                  </tr>
+                  {% endfor %}
+               </tbody>
+            </table>
+         </div>
+         <br>
+         <input type='submit' value='Predict'>
+     </div>
+      </form>
+   </body>
+   <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</html>
+<p></p>

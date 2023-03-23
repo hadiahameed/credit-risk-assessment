@@ -1,0 +1,25 @@
+output { 
+  position: static;
+  background-image: linear-gradient(#444444, #999999);
+  width: 100px; 
+  height: 30px; 
+  text-align: center; 
+  color: white; 
+  border-radius: 10px; 
+  display: inline-block; 
+  font: bold 15px/30px Georgia;
+}
+output:after { 
+  content: "";
+  position: static; 
+  
+}
+form { 
+  display: grid; /* to use css-grid */
+  grid-template-columns: 1fr 1fr; /* creates 2 columns */
+  gap: 20px; /* creates a gap between the columns and rows */ }
+
+.model_prediction {
+  color: darkred;
+  background-color: #d8da3d
+}
